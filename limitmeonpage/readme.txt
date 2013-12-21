@@ -1,0 +1,1 @@
+Need a standalone Javascript snippet to limit the amount of time a web page can be open.  Also need a countdown clock to show the time left.

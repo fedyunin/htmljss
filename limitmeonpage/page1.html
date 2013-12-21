@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Page1</title>
+</head>
+
+<script>
+
+    // This script demonstrates simple time out action for viewing current page.
+    var timerId = null;
+    var countDown = 0;
+    var updateTimerViewInterval = null;
+    var timeOutMessage = null;
+
+    function timeOut() {
+        clearInterval(updateTimerViewInterval);
+        if (timeOutMessage) {
+            alert(timeOutMessage);
+        }
+        window.location = "page2.html";
+    }
+    function updateTimerView() {
+        countDown--;
+        var el = document.getElementById(timerId);
+        el.innerHTML = countDown;
+    }
+
+    /**
+     * Starts timer for limit viewing current page.
+     * @param timerIdValue  - ID of element where need to show timer values,
+     * @param timeOutMessageValue - message that will be showed after time out,
+     * @param timeValue - time in seconds allowed for view current page.
+     */
+    function beginTimer(timerIdValue, timeOutMessageValue, timeValue) {
+        countDown = timeValue;
+        timerId = timerIdValue
+        timeOutMessage = timeOutMessageValue;
+        window.setTimeout(timeOut, timeValue * 1000);
+        updateTimerViewInterval = window.setInterval(updateTimerView, 1000);
+    }
+
+
+</script>
+
+<body onload="beginTimer('timer','Your time for viewing this page expired. You will be navigate to page2',10)">
+Page1
+
+<br>
+Timer:&nbsp;<span id="timer"></span>&nbsp;seconds remains to view this page.
+
+</body>
+</html>
